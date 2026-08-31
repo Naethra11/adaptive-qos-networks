@@ -1,0 +1,39 @@
+# Adaptive Smart QoS
+# Multi-Factor Decision Engine Configuration
+
+weights:
+  application_priority: 0.25
+  threat_security: 0.20
+  congestion: 0.15
+  bandwidth: 0.15
+  traffic_type: 0.10
+  device_trust: 0.10
+  latency: 0.05
+
+# Policy score thresholds
+# Score is calculated on a 0-100 scale.
+policy_thresholds:
+  critical: 85
+  high: 70
+  normal: 50
+  low: 30
+
+# Security thresholds
+security_thresholds:
+  monitor: 4
+  restrict: 7
+  quarantine: 9
+
+# Maximum bandwidth allocation allowed
+bandwidth:
+  max_allocation_percentage: 80
+
+# Traffic type importance
+traffic_type_scores:
+  Voice Call: 100
+  Video Call: 95
+  Gaming: 85
+  Web Browsing: 65
+  File Download: 45
+  Background Traffic: 25
+  Suspicious Traffic: 10
