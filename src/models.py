@@ -55,3 +55,4 @@ class DecisionResult:
     queue: str
     security_action: str
     reason: str
+    factor_contributions: dict

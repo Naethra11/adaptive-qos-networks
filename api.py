@@ -61,6 +61,7 @@ def get_decision(request: NetworkInputRequest):
             "queue": result.queue,
             "security_action": result.security_action,
             "reason": result.reason,
+            "factor_contributions": result.factor_contributions,
         }
 
     except ValueError as error:

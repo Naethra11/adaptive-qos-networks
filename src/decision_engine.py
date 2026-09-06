@@ -5,10 +5,12 @@ import yaml
 
 from src.models import NetworkInput, DecisionResult
 from src.normalization import normalize_inputs
-from src.scoring import calculate_decision_score
+from src.scoring import (
+    calculate_decision_score,
+    calculate_factor_contributions
+)
 from src.policy_selector import select_policy
-
-
+from src.dynamic_weights import get_dynamic_weights 
 # ---------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------
@@ -162,7 +164,6 @@ def make_decision(network_input: NetworkInput) -> DecisionResult:
     # 2. Load configuration
     config = load_config()
 
-    weights = config["weights"]
     policy_thresholds = config["policy_thresholds"]
     security_thresholds = config["security_thresholds"]
     traffic_type_scores = config["traffic_type_scores"]
@@ -183,13 +184,23 @@ def make_decision(network_input: NetworkInput) -> DecisionResult:
         traffic_type_scores
     )
 
-    # 5. Calculate weighted decision score
-    decision_score = calculate_decision_score(
-        normalized_factors=normalized,
-        weights=weights
+    # 5. Generate dynamic weights
+    dynamic_weights = get_dynamic_weights(
+        threat_level=network_input.threat_level,
+        congestion=network_input.congestion,
+        latency=network_input.latency,
     )
 
-    # 6. Select QoS policy
+    # 6. Calculate weighted decision score
+    decision_score = calculate_decision_score(
+        normalized_factors=normalized,
+        weights=dynamic_weights
+    )
+    factor_contributions = calculate_factor_contributions(
+    normalized_factors=normalized,
+    weights=dynamic_weights
+)
+    # 7. Select QoS policy
     policy_result = select_policy(
         decision_score=decision_score,
         threat_level=network_input.threat_level,
@@ -197,7 +208,7 @@ def make_decision(network_input: NetworkInput) -> DecisionResult:
         security_thresholds=security_thresholds,
     )
 
-    # 7. Calculate recommended bandwidth
+    # 8. Calculate recommended bandwidth
     bandwidth_allocation = calculate_bandwidth_allocation(
         policy=policy_result["qos_policy"],
         available_bandwidth=network_input.bandwidth_available,
@@ -205,7 +216,7 @@ def make_decision(network_input: NetworkInput) -> DecisionResult:
         congestion=network_input.congestion,
     )
 
-    # 8. Generate explanation
+    # 9. Generate explanation
     reason = generate_reason(
         traffic_type=network_input.traffic_type,
         threat_level=network_input.threat_level,
@@ -217,13 +228,14 @@ def make_decision(network_input: NetworkInput) -> DecisionResult:
         security_action=policy_result["security_action"],
     )
 
-    # 9. Return final decision
+    # 10. Return final decision
     return DecisionResult(
-        decision_score=decision_score,
-        priority=policy_result["priority"],
-        qos_policy=policy_result["qos_policy"],
-        bandwidth_allocation=bandwidth_allocation,
-        queue=policy_result["queue"],
-        security_action=policy_result["security_action"],
-        reason=reason,
-    )
+    decision_score=decision_score,
+    priority=policy_result["priority"],
+    qos_policy=policy_result["qos_policy"],
+    bandwidth_allocation=bandwidth_allocation,
+    queue=policy_result["queue"],
+    security_action=policy_result["security_action"],
+    reason=reason,
+    factor_contributions=factor_contributions,
+)
