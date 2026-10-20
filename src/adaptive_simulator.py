@@ -36,13 +36,19 @@ def run_adaptive_simulation(
             "Threat": scenario["threat_level"],
             "Congestion": scenario["congestion"],
             "Bandwidth (Mbps)": scenario["bandwidth_available"],
+            "Application Priority": scenario["application_priority"],
+            "Device Trust": scenario["device_trust"],
             "Latency (ms)": scenario["latency"],
             "Decision Score": result.decision_score,
             "Priority": result.priority,
             "QoS Policy": result.qos_policy,
             "Bandwidth Allocation": result.bandwidth_allocation,
+            "Queue": result.queue,
             "Security Action": result.security_action,
             "Reason": result.reason,
+            "Factor Contributions": result.factor_contributions,
+            "Normalized Factors": result.normalized_factors,
+            "Dynamic Weights": result.dynamic_weights,
         })
 
     return simulation_results

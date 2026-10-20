@@ -56,3 +56,5 @@ class DecisionResult:
     security_action: str
     reason: str
     factor_contributions: dict
+    normalized_factors: dict
+    dynamic_weights: dict

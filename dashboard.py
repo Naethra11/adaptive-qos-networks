@@ -949,5 +949,5 @@ if st.button(
     except Exception as error:
 
         st.error(
-            f"Simulation error: {error}"
+            "Simulation error: {error}"
         )

@@ -238,4 +238,6 @@ def make_decision(network_input: NetworkInput) -> DecisionResult:
     security_action=policy_result["security_action"],
     reason=reason,
     factor_contributions=factor_contributions,
+    normalized_factors=normalized,
+    dynamic_weights=dynamic_weights,
 )

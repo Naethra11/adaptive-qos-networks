@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+
+:root {
+  --console-bg: #111318;
+  --console-sidebar: #151820;
+  --console-header: #171a22;
+  --console-surface: #1b1e27;
+  --console-raised: #20232d;
+  --console-elevated: #242733;
+  --console-border: #303440;
+  --console-violet: #a78bfa;
+  --console-violet-strong: #8b70dc;
+  --console-amber: #f5b942;
+  --console-green: #45c98a;
+  --console-danger: #ef6675;
+  --console-text: #f3f4f6;
+  --console-muted: #a7adba;
+
+  font-family: Inter, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--console-text);
+  background: var(--console-bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@theme {
+  --color-white: #f3f4f6;
+  --color-slate-50: #f3f4f6;
+  --color-slate-100: #e6e8ed;
+  --color-slate-200: #c9ced8;
+  --color-slate-300: #a7adba;
+  --color-slate-400: #9299a7;
+  --color-slate-500: #747b89;
+  --color-slate-600: #555b68;
+  --color-slate-700: #3c414d;
+  --color-slate-800: #303440;
+  --color-slate-900: #20232d;
+  --color-slate-950: #171a22;
+  --color-cyan-100: #eee9ff;
+  --color-cyan-200: #9478e2;
+  --color-cyan-300: #8066d2;
+  --color-cyan-400: #bba8ff;
+  --color-cyan-500: #a78bfa;
+  --color-cyan-600: #8b70dc;
+  --color-cyan-700: #7058b8;
+  --color-cyan-800: #57448c;
+  --color-cyan-900: #3f3460;
+  --color-cyan-950: #2b2540;
+  --color-sky-100: #eee9ff;
+  --color-sky-200: #ded5ff;
+  --color-sky-300: #a78bfa;
+  --color-sky-400: #bba8ff;
+  --color-sky-500: #a78bfa;
+  --color-sky-600: #8b70dc;
+  --color-sky-700: #7058b8;
+  --color-sky-800: #57448c;
+  --color-sky-900: #3f3460;
+  --color-sky-950: #2b2540;
+  --color-violet-50: #f3efff;
+  --color-violet-100: #eee9ff;
+  --color-violet-200: #ded5ff;
+  --color-violet-300: #c5b5ff;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #9478e2;
+  --color-violet-600: #8b70dc;
+  --color-violet-700: #7058b8;
+  --color-violet-800: #57448c;
+  --color-violet-900: #3f3460;
+  --color-violet-950: #2b2540;
+  --color-blue-100: #fff0cf;
+  --color-blue-200: #ffe4ad;
+  --color-blue-300: #ffd477;
+  --color-blue-400: #f5b942;
+  --color-blue-500: #daa23a;
+  --color-blue-600: #b7832e;
+  --color-emerald-100: #d9f8e8;
+  --color-emerald-200: #a8edc9;
+  --color-emerald-300: #72dda8;
+  --color-emerald-400: #45c98a;
+  --color-emerald-500: #35ad75;
+  --color-emerald-600: #26885b;
+  --color-amber-100: #fff0cf;
+  --color-amber-200: #ffe4ad;
+  --color-amber-300: #ffd477;
+  --color-amber-400: #f5b942;
+  --color-amber-500: #daa23a;
+  --color-amber-600: #b7832e;
+  --color-rose-100: #ffe4e7;
+  --color-rose-200: #ffb9c1;
+  --color-rose-300: #fa8995;
+  --color-rose-400: #ef6675;
+  --color-rose-500: #dc5161;
+  --color-rose-600: #bd3e4e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--console-bg);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border-radius: 0.65rem;
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 150ms;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--console-violet);
+  outline-offset: 2px;
+}
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--console-border);
+  border-radius: 0.9rem;
+  background: var(--console-surface);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+.panel::before {
+  content: none;
+}
+
+button.bg-cyan-300 {
+  color: var(--console-text);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--console-violet);
+  border: 2px solid var(--console-bg);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.16);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--console-bg);
+  border-radius: 50%;
+  background: var(--console-violet);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.16);
+}
